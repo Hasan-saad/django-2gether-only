@@ -1,0 +1,30 @@
+% get_comment_form for event as form %}
+<table>
+  <form action="{% comment_form_target %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <tr>
+      <td colspan="2">
+        <input type="submit" name="submit" value="Post">
+        <input type="submit" name="preview" value="Preview">
+      </td>
+    </tr>
+  </form>
+</table>
+
+<!--{% if user.is_authenticated %}-->
+<!--    {% get_comment_form for object as form %}-->
+<!--    <form action="{% comment_form_target %}" method="POST">-->
+<!--    {% csrf_token %}-->
+<!--    {{ form.comment }}-->
+<!--    {{ form.honeypot }}-->
+<!--    {{ form.content_type }}-->
+<!--    {{ form.object_pk }}-->
+<!--    {{ form.timestamp }}-->
+<!--    {{ form.security_hash }}-->
+<!--    <input type="hidden" name="next" value="{% url 'object_detail_view' object.id %}" />-->
+<!--    <input type="submit" value="Add comment" id="id_submit" />-->
+<!--    </form>-->
+<!--{% else %}-->
+<!--    <p>Please <a href="{% url 'auth_login' %}">log in</a> to leave a comment.</p>-->
+<!--{% endif %}-->

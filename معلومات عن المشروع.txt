@@ -1,0 +1,74 @@
+
+
+
+django
+- models
+- views
+- url
+- templates
+- forms
+
+searsh for:
+- django template ( language ( مش فاكر ) , date format ( دي عشان تعرف تضيف التاريخ والوقت بالطريقة اللي انت محتاجها ) , filter count ( عشان تعرف تظهر عدد المستخدمين في الموقع) )
+- django queryset api ( بيقول انها مهمة ومحتاج البحث عنها  )
+- django model ( fieldes ( هي لمعرفة اي حقل انت محتاج تعرف بتاع ايه ) , relationships ( مش فاكر ) )
+- django pagination ( دي بتستخدمها عشان تظهر عدد الصفحات في قائمة الصفحات وتقدر تتحرك مبينهم )
+- django slug ( هي العنوان الصفح )
+- django slugify ( هي بتشيل المسافات اللي مبين الكلام) 
+- django bootsrap4 
+- Exctention for pycharm ( auto complate )
+- django user authentication ( MDN )
+- django phone field
+- django city field
+- django signals
+- django filter ( gethub )
+- django IntgerField
+
+
+
+Service Provider:
+- fName
+- lName
+- address
+- jopTitle
+- jopDescription
+- Category ( chosse )
+- phone
+- rate
+- publishAt
+- city
+- timeAvaliable
+- bio
+- experience
+- sign in as facebook , gmail.com 
+- responsibility
+- qualifications
+- image
+- accept mail
+- booking => summery
+- vecancy => summery - booking
+- dayAvaliable - dateAvaliable
+
+Customer:
+- fName
+- lName
+- city
+- at lest five category
+- phone
+- sign in as facebook , gmail.com 
+- send mail
+- comment
+- choose Day and date for service provider append 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
