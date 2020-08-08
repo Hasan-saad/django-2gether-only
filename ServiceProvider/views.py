@@ -13,6 +13,7 @@ from accounts.forms import UserForm,ProfileForm
 
 
 def service_list(request):
+    service_list = ServicProvider.objects.filter(Vacancy__lte=0).delete()
     service_list = ServicProvider.objects.all()
     profile_detals = Profile.objects.get(user=request.user)
     filter = ServicProviderFilter(request.GET, queryset=service_list)
@@ -21,7 +22,7 @@ def service_list(request):
     pageNumber = request.GET.get('page')
     pagePaginator = paginator.get_page(pageNumber)
 
-    context ={'services': pagePaginator, 'service_provider': service_list, 'filter': filter,'profile_detals':profile_detals}
+    context ={'services': pagePaginator, 'service_provider': service_list, 'filter': filter}
     return render(request, 'ServiceProvider/Service_list.html', context)
 
 
