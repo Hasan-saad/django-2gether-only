@@ -1,12 +1,11 @@
 # from multiprocessing.reduction import register
-
 from django.contrib.auth.decorators import login_required
 from django.db.models import F
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,  get_object_or_404
 from django.urls import reverse
-from .models import ServicProvider
+from .models import *
 from django.core.paginator import Paginator
-from .form import ReservationProblem, AddService
+from .form import ReservationProblem, AddService, CommentForm
 from .filters import ServicProviderFilter
 from accounts.models import Profile
 from accounts.forms import UserForm,ProfileForm
@@ -29,6 +28,10 @@ def service_list(request):
 def service_detals(request, id):
     service_detals = ServicProvider.objects.get(id=id)
     profile_detals = Profile.objects.get(user=request.user)
+    # Comments
+    comments = Comment.objects.filter(serviceProvider_id = service_detals)
+    new_comment = None
+    # Comment posted
     if request.method == 'POST':
         form = ReservationProblem(request.POST)
         if form.is_valid():
@@ -39,8 +42,48 @@ def service_detals(request, id):
             service_detals.save()
     else:
         form = ReservationProblem()
-    context = {'service': service_detals, 'form': form,'profile_detals':profile_detals}
+
+    commentForm = None
+    if request.method == 'POST' and not form.is_valid():
+        commentForm = CommentForm(request.POST)
+        if commentForm.is_valid():
+            # Create Comment object but don't save to database yet
+            new_comment = commentForm.save(commit=False)
+            # Assign the current post to the comment
+            new_comment.user = profile_detals 
+            new_comment.serviceProvider = service_detals 
+            # Save the comment to the database
+            new_comment.save()
+    else:
+        commentForm = CommentForm()
+
+
+    context = {'service': service_detals, 'form': form,'profile_detals':profile_detals,
+                'comments': comments, 'new_comment': new_comment, 'commentForm': commentForm}
     return render(request, 'ServiceProvider/Service_detail.html', context)
+
+# def post_detail(request):
+#     # post = get_object_or_404(Post, slug=slug)
+#     comments = user.comments.filter(active=True)
+#     new_comment = None
+#     # Comment posted
+#     if request.method == 'POST':
+#         commentForm = CommentForm(data=request.POST)
+#         if commentForm.is_valid():
+
+#             # Create Comment object but don't save to database yet
+#             new_comment = commentForm.save(commit=False)
+#             # Assign the current post to the comment
+#             new_comment.user = user
+#             # Save the comment to the database
+#             new_comment.save()
+#     else:
+#         commentForm = CommentForm()
+
+#     context = { 'comments': comments, 'new_comment': new_comment, 'commentForm': commentForm }
+
+#     return render(request, 'ServiceProvider/Service_detail.html', context)
+
 
 # @register.filter
 # def subtract(value, arg):
@@ -60,4 +103,10 @@ def add_service(request):
         serviceProviderForm = AddService()
     context = { 'serviceProviderForm': serviceProviderForm}
     return render(request, 'ServiceProvider/Post_service.html', context)
+
+
+
+
+
+
 

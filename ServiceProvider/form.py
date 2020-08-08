@@ -1,6 +1,5 @@
-import ServiceProvider
 from django import forms
-from .models import Reservation, ServicProvider
+from .models import *
 
 class ReservationProblem(forms.ModelForm):
     class Meta:
@@ -12,3 +11,9 @@ class AddService(forms.ModelForm):
         model = ServicProvider
         fields = '__all__'
         exclude = [ 'user', 'publishAt' ]
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['body']
