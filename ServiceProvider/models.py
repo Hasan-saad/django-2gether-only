@@ -67,7 +67,7 @@ class Reservation(models.Model):
 class Comment(models.Model):
     user = models.ForeignKey(Profile,on_delete=models.CASCADE,related_name='comments')
     serviceProvider = models.ForeignKey(ServicProvider,on_delete=models.CASCADE,related_name='comments')
-    body = models.TextField()
+    comment = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
 
@@ -75,7 +75,7 @@ class Comment(models.Model):
         ordering = ['created_on']
 
     def __str__(self):
-        return 'Comment {} by {}'.format(self.body, self.user)
+        return 'Comment {} by {}'.format(self.comment, self.user)
 
 
 

@@ -8,9 +8,9 @@ admin.site.register(Reservation)
 # admin.site.register(comments)
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('user', 'body', 'serviceProvider', 'created_on', 'active')
+    list_display = ('user', 'comment', 'serviceProvider', 'created_on', 'active')
     list_filter = ('active', 'created_on')
-    search_fields = ('user', 'body')
+    search_fields = ('user', 'comment')
     actions = ['approve_comments']
 
     def approve_comments(self, request, queryset):
