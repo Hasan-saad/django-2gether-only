@@ -1,7 +1,6 @@
 
 {% extends 'base.html'%}
 {% load bootstrap4 %}
-
 {% block body%}
 
     <!-- bradcam_area  -->
@@ -23,13 +22,13 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="job_details_header">
-                        <div class="single_jobs white-bg d-flex justify-content-between">
-                            <div class="jobs_left d-flex align-items-center">
+                        <div class="single_jobs white-bg d-flex justify-content-between" style="height: 220px">
+                            <div class="jobs_left d-flex align-items-center" >
                                 <div class="thumb">
-                                    <img src="img/svg_icon/1.svg" alt="">
+                                    <img src="{{ service.img.url }}" class="img-style" width="300px" height="500%" style ="margin-left: -26px; margin-top: -65px;" alt="">
                                 </div>
-                                <div class="jobs_conetent">
-                                    <a href="#"><h4>{{service}}</h4></a>
+                                <div class="jobs_conetent" style="margin-left: 100px">
+                                    <a href="#"><h4 >{{service}}</h4></a>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +109,7 @@
                       <div class="card-body">
                         {% if new_comment %}
                         <div class="alert alert-success" role="alert">
-                          Your comment is awaiting moderation
+                          Comment Done
                         </div>
                         {% else %}
                         <h3>Leave a comment</h3>

@@ -29,15 +29,6 @@ class ServicProvider(models.Model):
     def __str__(self):
         return str(self.user)
 
-# class comments(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     commentOn = models.ForeignKey(ServicProvider, on_delete=models.CASCADE)
-#     body = models.TextField(max_length=500)
-#     publishAt = models.DateTimeField(auto_now=True)
-
-#     def __str__(self):
-#         return str(self.user.username)
-
 
 
 class Category(models.Model):
@@ -58,10 +49,6 @@ class Reservation(models.Model):
 
     def __str__(self):
         return str(self.service)
-
-
-
-
 
 
 class Comment(models.Model):

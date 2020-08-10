@@ -55,7 +55,7 @@
                                 <div class="single_jobs white-bg d-flex justify-content-between">
                                     <div class="jobs_left d-flex align-items-center">
                                         <div class="thumb">
-                                            <img src="{{ service.img }}" alt="">
+                                            <img src="{{ service.img.url }}" class="img-style" width="10px" height="10%" style ="width: 100px; height: 100px; margin-left: -26px; margin-top: -30px;" alt="">
                                         </div>
                                         <div class="jobs_conetent">
                                             <a href="{% url 'services:service_detail' service.id%}"><h4>{{ service.user.first_name }}</h4></a>

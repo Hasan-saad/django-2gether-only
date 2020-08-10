@@ -24,8 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('ServiceProvider/', include('ServiceProvider.urls', namespace='services')),
     path('api-auth/', include('rest_framework.urls')),
-    path('comments/', include('django_comments.urls')),
-    path('comments/', include('comments.urls')),
 
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

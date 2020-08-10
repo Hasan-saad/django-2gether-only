@@ -1,6 +1,21 @@
-.color_count_of_vacancy{
+/* .color_count_of_vacancy{
     color: #00D363;
 }
 .located{
     margin-right: 30px;
 }
+
+.img-style{
+    width: 100px; height: 100px; margin-left: -26px; margin-top: -30px;}
+.job_details_area .single_jobs {
+    padding: 30px;
+    border-bottom: 1px solid #EAEAEA;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    height: 400px;
+  } */

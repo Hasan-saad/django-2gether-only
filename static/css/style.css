@@ -13,6 +13,7 @@
   justify-content: start;
 }
 
+
 /* Normal desktop :1200px. */
 /* Normal desktop :992px. */
 /* Tablet desktop :768px. */
@@ -3876,6 +3877,7 @@ h3 {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+  height: 400px;
 }
 
 @media (max-width: 767px) {
