@@ -2,7 +2,6 @@
 {% extends 'base.html'%}
 {% load bootstrap4 %}
 {% load mathfilters %}
-{% load fliterTag %}
 
 {% block body%}
 
@@ -64,7 +63,7 @@
                                                     <p>{{ service.jopType }}</p>
                                                 </div>
                                                 <div class="located  ">
-                                                    <p> <i class="fa fa-map-marker"></i> {{ profile_detals.city}}</p>
+                                                    <p> <i class="fa fa-map-marker"></i> {{ user.profile.city }}</p>
                                                 </div>
                                                 <div class="located  ">
                                                     <p>

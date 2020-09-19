@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block body%}
+
+    <!-- slider_area_start -->
+    <div class="slider_area">
+        <div class="single_slider  d-flex align-items-center slider_bg_1">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 col-md-6">
+                        <div class="slider_text">
+                            <h5 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s">{{ Services|length }}+ Services listed</h5>
+                            <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">Find your need service</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- slider_area_end -->
+
+    <!-- popular_catagory_area_start  -->
+    <div class="popular_catagory_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section_title mb-40">
+                        <h3>Popolar Categories</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for category in categorys %}
+                
+                <div class="col-lg-4 col-xl-3 col-md-6">
+                    <div class="single_catagory">
+                        <a href="{% url 'services:service_list'%}"><h4>{{category}}</h4></a>
+                        <!-- <p> <span>{{ Services|length }}</span> Available position</p> -->
+                    </div>
+                </div>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- popular_catagory_area_end  -->
+
+    <!-- job_listing_area_start  -->
+    <div class="job_listing_area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="section_title">
+                        <h3>Job Listing</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="job_lists">
+                <div class="row">
+                    {% for service in service%}
+                                
+                        <div class="col-lg-12 col-md-12">
+                            <div class="single_jobs white-bg d-flex justify-content-between">
+                                <div class="jobs_left d-flex align-items-center">
+                                    <div class="thumb">
+                                        <img src="{{ service.img.url }}" class="img-style" width="10px" height="10%" style ="width: 100px; height: 100px; margin-left: -26px; margin-top: -30px;" alt="">
+                                    </div>
+                                    <div class="jobs_conetent">
+                                        <a href="{% url 'services:service_detail' service.id%}"><h4>{{ service.user.first_name }}</h4></a>
+                                        <div class="links_locat d-flex align-items-center">
+                                             <div class="located  ">
+                                                <p>{{ service.jopType }}</p>
+                                            </div>
+                                            <div class="located  ">
+                                                <p> <i class="fa fa-map-marker"></i> {{ user.profile.city }}</p>
+                                            </div>
+                                            <div class="located  ">
+                                                <p>
+                                                    <i class="fa fa-clock-o"></i>
+                                                    Service:
+                                                    <span class="color_count_of_vacancy">
+                                                        {{service.Vacancy }}
+
+                                                    </span>
+                                                    Free
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="jobs_right">
+                                    <div class="apply_now">
+                                        <!-- <a class="heart_mark" href="#"> <i class="fa fa-heart"></i> </a> -->
+                                        <a href="{% url 'services:service_detail' service.id%}" class="boxed-btn3">Apply Now</a>
+                                    </div>
+                                    <div class="date">
+                                        <p>Date line:{{service.publishAt|date:"j M, Y"}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- job_listing_area_end  -->
+
+    <!-- job_searcing_wrap  -->
+    <div class="job_searcing_wrap overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 offset-lg-1 col-md-6">
+                    <div class="searching_text">
+                        <h3>Looking for a service ?</h3>
+                        <a href="{% url 'services:service_list'%}" class="boxed-btn3">Browse service</a>
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-lg-1 col-md-6">
+                    <div class="searching_text">
+                        <h3>To gain experience ?</h3>
+                        
+                        {% if request.user.is_authenticated%}
+                                        <div class="d-none d-lg-block">
+                                            <a class="boxed-btn3" href="{% url 'services:add_service'%}">add your skills</a><!-- Post a Job -->
+                                        </div>
+                                    {% else %}
+                                        <div class="d-none d-lg-block">
+                                            <a class="boxed-btn3" href="{% url 'accounts:signup'%}">register</a><!-- Post a Job -->
+                                        </div>
+                                    {% endif %}
+                            
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- job_searcing_wrap end  -->
+
+        {% endblock body%}

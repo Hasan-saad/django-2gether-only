@@ -1,5 +1,6 @@
 import django_filters
 from .models import ServicProvider
+from accounts.models import Profile
 
 class ServicProviderFilter(django_filters.FilterSet):
     # fName = django_filters.CharFilter(lookup_expr='icontains')
@@ -7,4 +8,4 @@ class ServicProviderFilter(django_filters.FilterSet):
     class Meta:
         model = ServicProvider
         fields = '__all__'
-        exclude = ['user', 'img', 'fName', 'lName', 'publishAt', 'Vacancy']
+        exclude = ['user', 'img', 'publishAt', 'Vacancy']

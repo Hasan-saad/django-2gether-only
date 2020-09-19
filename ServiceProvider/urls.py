@@ -1,15 +1,17 @@
 from django.urls import path, include
-from .views import service_list, service_detals, add_service
+from .views import *
 from contact.views import send_massage
 from .api import service_provider_api , ServiceProviderDetail, ServiceDetail, service_provider_api_id
 
 app_name = 'serviceProvider'
 
 urlpatterns = [
-    path('', service_list, name='sercive_list'),
+    path('', home, name='index'),
+    path('services', service_list, name='service_list'),
     path('<int:id>', service_detals, name='service_detail'),
     path('add', add_service, name='add_service'),
     path('contact', send_massage, name='contact'),
+    
 
     # api
     path('api/list', service_provider_api, name='api'),

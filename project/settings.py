@@ -41,16 +41,12 @@ INSTALLED_APPS = [
 
     #My apps
     'ServiceProvider',
-    'home',
     'contact',
     "bootstrap4",
     'django_filters',
     'rest_framework',
     'mathfilters',
-    # 'django.contrib.sites',
-    # 'django_comments',
-    # 'comments',
-
+    
 ]
 
 MIDDLEWARE = [

@@ -14,7 +14,11 @@ from accounts.forms import UserForm,ProfileForm
 def service_list(request):
     service_list = ServicProvider.objects.filter(Vacancy__lte=0).delete()
     service_list = ServicProvider.objects.all()
-    profile_detals = Profile.objects.get(user=request.user)
+    
+    if request.user.is_authenticated:
+        profile_detals = Profile.objects.get(user=request.user)
+    
+
     filter = ServicProviderFilter(request.GET, queryset=service_list)
     service_list = filter.qs
     paginator = Paginator(service_list, 3)  # Show 25 contacts per page.
@@ -27,7 +31,9 @@ def service_list(request):
 
 def service_detals(request, id):
     service_detals = ServicProvider.objects.get(id=id)
-    profile_detals = Profile.objects.get(user=request.user)
+    profile_detals = ''
+    if request.user.is_authenticated:
+        profile_detals = Profile.objects.get(user=request.user)
     # Comments
     comments = Comment.objects.filter(serviceProvider_id = service_detals)
     new_comment = None
@@ -62,32 +68,6 @@ def service_detals(request, id):
                 'comments': comments, 'new_comment': new_comment, 'commentForm': commentForm}
     return render(request, 'ServiceProvider/Service_detail.html', context)
 
-# def post_detail(request):
-#     # post = get_object_or_404(Post, slug=slug)
-#     comments = user.comments.filter(active=True)
-#     new_comment = None
-#     # Comment posted
-#     if request.method == 'POST':
-#         commentForm = CommentForm(data=request.POST)
-#         if commentForm.is_valid():
-
-#             # Create Comment object but don't save to database yet
-#             new_comment = commentForm.save(commit=False)
-#             # Assign the current post to the comment
-#             new_comment.user = user
-#             # Save the comment to the database
-#             new_comment.save()
-#     else:
-#         commentForm = CommentForm()
-
-#     context = { 'comments': comments, 'new_comment': new_comment, 'commentForm': commentForm }
-
-#     return render(request, 'ServiceProvider/Service_detail.html', context)
-
-
-# @register.filter
-# def subtract(value, arg):
-#     return value - arg
 
 @login_required
 def add_service(request):
@@ -98,14 +78,26 @@ def add_service(request):
             formService.user = request.user
             formService.save()
             
-            return redirect(reverse('services:sercive_list'))
+            return redirect(reverse('services:service_list'))
     else:
         serviceProviderForm = AddService()
     context = { 'serviceProviderForm': serviceProviderForm}
     return render(request, 'ServiceProvider/Post_service.html', context)
 
 
+def home(request):
+    Services = ServicProvider.objects.all()
+    categorys = Category.objects.all()
 
+    paginator_cago = Paginator(categorys, 8)
+    pageNumberCategory = request.GET.get('page')
+    pagePaginatorCategory = paginator_cago.get_page(pageNumberCategory)
+    
+    paginator = Paginator(Services, 3)  # Show 25 contacts per page.
+    pageNumber = request.GET.get('page')
+    pagePaginator = paginator.get_page(pageNumber)
+
+    return render( request, 'ServiceProvider/index.html', {'Services':Services, 'categorys':pagePaginatorCategory, 'service':pagePaginator} )
 
 
 
